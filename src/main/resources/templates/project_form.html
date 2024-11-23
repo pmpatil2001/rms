@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create/Edit Project</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <div class="logo">
+      <img src="css\logo\logo.png" alt="Innovera Logo">
+    </div>
+  </div>
+  <h1 th:text="${project.id != null ? 'Edit Project' : 'Create Project'}">Create Project</h1>
+</header>
+<main>
+  <div class="form-container">
+    <form th:action="@{/projects}" th:object="${project}" method="post">
+      <input type="hidden" th:if="${project.id}" th:field="*{id}" />
+      <div>
+        <label for="name">Project Name:</label>
+        <input type="text" id="name" th:field="*{name}" required/>
+      </div>
+      <div>
+        <label for="description">Project Description:</label>
+        <textarea id="description" th:field="*{description}" required></textarea>
+      </div>
+      <div>
+        <label for="type">Project Type:</label>
+        <select id="type" th:field="*{type}">
+          <option value="TECH_STARTUP">Tech Startup</option>
+          <option value="SOCIAL_ENTERPRISE">Social Enterprise</option>
+          <option value="EDUCATIONAL_TOOL">Educational Tool</option>
+        </select>
+      </div>
+      <div>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</main>
+</body>
+</html>

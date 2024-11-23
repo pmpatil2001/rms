@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ Test</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main Container */
+        .test-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 40px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Question Styling */
+        .question {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fafafa;
+        }
+
+        .question h2 {
+            font-size: 1.2em;
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #555;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        input[type="radio"] {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            margin: 0;
+        }
+
+        /* Submit Button */
+        button[type="submit"] {
+            width: 100%;
+            background-color: #28a745;
+            font-size: 1.2em;
+            padding: 14px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="test-container">
+    <h1>MCQ Test</h1>
+
+    <form id="mcq-form" action="/submit-mcq" method="POST">
+        <!-- Question 1 -->
+        <div class="question">
+            <h2>1. What is the size of an int in Java?</h2>
+            <label><input type="radio" name="q1" value="4" required> 4 bytes</label>
+            <label><input type="radio" name="q1" value="8"> 8 bytes</label>
+            <label><input type="radio" name="q1" value="16"> 16 bytes</label>
+            <label><input type="radio" name="q1" value="32"> 32 bytes</label>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question">
+            <h2>2. Which of the following is not a Java feature?</h2>
+            <label><input type="radio" name="q2" value="Object-oriented" required> Object-oriented</label>
+            <label><input type="radio" name="q2" value="Use of pointers"> Use of pointers</label>
+            <label><input type="radio" name="q2" value="Portable"> Portable</label>
+            <label><input type="radio" name="q2" value="Dynamic"> Dynamic</label>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question">
+            <h2>3. What is the default value of a boolean in Java?</h2>
+            <label><input type="radio" name="q3" value="true" required> true</label>
+            <label><input type="radio" name="q3" value="false"> false</label>
+            <label><input type="radio" name="q3" value="0"> 0</label>
+            <label><input type="radio" name="q3" value="null"> null</label>
+        </div>
+
+        <button type="submit">Submit Test</button>
+    </form>
+</div>
+
+<!-- Notification -->
+<div id="success-notification" class="notification">
+    Test submitted successfully!
+</div>
+
+<script>
+    document.getElementById('mcq-form').addEventListener('submit', function(event) {
+        event.preventDefault();  // Prevent form from submitting normally
+
+        // Show notification
+        document.getElementById('success-notification').style.display = 'block';
+
+        // Hide notification after 3 seconds
+        setTimeout(function() {
+            document.getElementById('success-notification').style.display = 'none';
+        }, 3000);
+
+        // Close the window and redirect after 3 seconds
+        setTimeout(function() {
+            window.close();  // Close the current window
+
+            // Redirect to the previous page after closing the window
+            window.history.back();  // Go back to the previous page
+        }, 3000);  // Wait for 3 seconds before closing and redirecting
+    });
+</script>
+
+</body>
+</html>

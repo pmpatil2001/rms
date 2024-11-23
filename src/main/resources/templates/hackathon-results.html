@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Hackathon Results</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<header>
+  <h1>Hackathon Results</h1>
+</header>
+<main>
+  <div>
+    <h2>All Hackathon Test Results</h2>
+
+    <div th:if="${message}" style="color: green;">
+      <p th:text="${message}"></p>
+    </div>
+
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Question 1 Answer</th>
+        <th>Question 2 Answer</th>
+        <th>Question 3 Answer</th>
+        <th>Score</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="result : ${results}">
+        <td th:text="${result.id}"></td>
+        <td th:text="${result.username}"></td>
+        <td th:text="${result.q1Answer}"></td>
+        <td th:text="${result.q2Answer}"></td>
+        <td th:text="${result.q3Answer}"></td>
+        <td th:text="${result.score}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>
